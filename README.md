@@ -6,25 +6,7 @@ Upload any street photo → the model segments it into 34 classes (road, car, bu
 
 ---
 
-## CV / Portfolio Description
 
-**Title:**
-> CityScape — Full-Stack Semantic Segmentation Web App
-
-**Short description (for CV):**
-> Built a full-stack AI web application that performs real-time semantic segmentation on urban street images using DeepLabV3 + ResNet-50 trained on the Cityscapes dataset (34 classes). Developed a FastAPI backend serving PyTorch inference, a React frontend with drag-and-drop upload, MLflow experiment tracking, and full Docker containerization.
-
-**Stack line (for CV / LinkedIn):**
-> Python · PyTorch · FastAPI · React · Vite · MLflow · Docker
-
-**Bullet points (for CV):**
-- Trained DeepLabV3 + ResNet-50 on the Cityscapes dataset achieving 25.6% mIoU and 0.308 Dice score over 20 epochs
-- Built a REST API with FastAPI serving real-time segmentation inference with per-class coverage percentages
-- Developed a React + Vite frontend with drag-and-drop image upload and live result visualization
-- Tracked all experiments, metrics, and artifacts using MLflow
-- Containerized the full stack (backend, frontend, MLflow) with Docker Compose
-
----
 
 ## Tech Stack
 
@@ -143,27 +125,6 @@ MLflow dashboard at: **http://localhost:5000**
 
 ---
 
-## Run with Docker
-
-Make sure Docker Desktop is running, then from the project root:
-
-```bash
-docker-compose up --build
-```
-
-| Service | URL |
-|---|---|
-| Frontend | http://localhost:3000 |
-| Backend API | http://localhost:8000 |
-| MLflow UI | http://localhost:5000 |
-
-To stop:
-
-```bash
-docker-compose down
-```
-
----
 
 ## API Endpoints
 
@@ -199,14 +160,7 @@ Response:
 
 ---
 
-## Cityscapes Classes (34)
-
-The model segments images into the following classes, each with a unique color:
-
-`road` · `sidewalk` · `building` · `wall` · `fence` · `pole` · `traffic light` · `traffic sign` · `vegetation` · `terrain` · `sky` · `person` · `rider` · `car` · `truck` · `bus` · `train` · `motorcycle` · `bicycle` · and more.
-
----
 
 ## Author
 
-**Samer Soltani** — [samersoltani02@gmail.com](mailto:samersoltani02@gmail.com)
+**Samer Soltani** — 
