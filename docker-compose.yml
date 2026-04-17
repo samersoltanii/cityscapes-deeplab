@@ -1,0 +1,40 @@
+version: "3.9"
+
+services:
+
+  backend:
+    build:
+      context: ./backend
+    container_name: deeplab_backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./model:/model:ro
+      - ./deeplabv3_results.json:/deeplabv3_results.json:ro
+      - ./mlruns:/mlruns
+    environment:
+      - PYTHONUNBUFFERED=1
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend
+    container_name: deeplab_frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+  mlflow:
+    image: python:3.11-slim
+    container_name: deeplab_mlflow
+    command: >
+      bash -c "pip install mlflow==2.13.0 -q &&
+               mlflow ui --backend-store-uri file:/mlruns
+                         --host 0.0.0.0 --port 5000"
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./mlruns:/mlruns
+    restart: unless-stopped

@@ -1,0 +1,11 @@
+{
+  "model": "DeepLabV3 (ResNet-50)",
+  "run_id": "344f2b9e195a4763afd2d44fa484f683",
+  "img_size": 256,
+  "epochs": 20,
+  "batch_size": 8,
+  "val_loss": 0.142,
+  "mIoU": 0.2563,
+  "dice_score": 0.3083,
+  "best_mIoU": 0.2563
+}
