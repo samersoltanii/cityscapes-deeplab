@@ -35,11 +35,33 @@ export default function App() {
 
   return (
     <div className="app">
-      {/* Header */}
-      <div className="header">
-        <h1>🏙️ Cityscapes Segmentation</h1>
-        <p>DeepLabV3 · ResNet-50 · 34 Classes · MLflow Tracked</p>
-      </div>
+      {/* Navbar */}
+      <nav className="navbar" id="navbar">
+        <div className="navbar-brand">
+          <div className="navbar-logo">🏙️</div>
+          <span className="navbar-title">CityScape</span>
+        </div>
+        <div className="navbar-badge">
+          <span className="dot" />
+          DeepLabV3 · ResNet-50
+        </div>
+      </nav>
+
+      {/* Hero Header */}
+      <header className="header" id="hero">
+        <div className="header-eyebrow">✨ AI-Powered Urban Analysis</div>
+        <h1>CityScape</h1>
+        <p>
+          Upload any street scene photo and watch our DeepLabV3 model
+          segment it into 34 semantic classes in real time.
+        </p>
+        <div className="header-tech">
+          <span className="tech-pill">🧠 DeepLabV3</span>
+          <span className="tech-pill">🔗 ResNet-50</span>
+          <span className="tech-pill">🎯 34 Classes</span>
+          <span className="tech-pill">📊 MLflow</span>
+        </div>
+      </header>
 
       {/* Model metrics */}
       <Metrics />
@@ -49,23 +71,34 @@ export default function App() {
 
       {/* Loader */}
       {loading && (
-        <div className="loader">
+        <div className="loader" id="loader">
           <div className="spinner" />
-          Running DeepLabV3 inference...
+          <p className="loader-text">Running DeepLabV3 inference…</p>
         </div>
       )}
 
       {/* Error */}
-      {error && <p className="error">⚠️ {error}</p>}
+      {error && <p className="error" id="error-message">⚠️ {error}</p>}
 
       {/* Results */}
       {result && <Result data={result} />}
 
       {/* Footer */}
-      <div style={{ textAlign: 'center', marginTop: '3rem', color: '#444' }}>
-        <p>MLflow UI → <a href="http://127.0.0.1:5000"
-           style={{ color: '#4f8ef7' }}>127.0.0.1:5000</a></p>
-      </div>
+      <footer className="footer" id="footer">
+        <p>
+          MLflow UI →{' '}
+          <a href="http://127.0.0.1:5000" target="_blank" rel="noopener noreferrer">
+            127.0.0.1:5000
+          </a>
+        </p>
+        <div className="footer-tech">
+          <span>React</span>
+          <span>·</span>
+          <span>FastAPI</span>
+          <span>·</span>
+          <span>PyTorch</span>
+        </div>
+      </footer>
     </div>
   )
 }

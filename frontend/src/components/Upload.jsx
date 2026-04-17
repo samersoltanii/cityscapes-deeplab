@@ -23,8 +23,14 @@ export default function Upload({ onUpload, loading }) {
   }
 
   return (
-    <div>
+    <div className="upload-section">
+      <div className="section-title">
+        <div className="icon">📤</div>
+        <span>Upload Street Scene</span>
+      </div>
+
       <div
+        id="upload-dropzone"
         className={`upload-zone ${dragging ? 'dragging' : ''}`}
         onDragOver={(e) => { e.preventDefault(); setDragging(true) }}
         onDragLeave={() => setDragging(false)}
@@ -38,26 +44,29 @@ export default function Upload({ onUpload, loading }) {
           onChange={(e) => handleFile(e.target.files[0])}
         />
         {preview ? (
-          <img src={preview} alt="preview"
-               style={{ maxHeight: 200, borderRadius: 8, marginBottom: 12 }} />
+          <img src={preview} alt="Preview of uploaded street scene" />
         ) : (
           <>
             <div className="upload-icon">🏙️</div>
             <h3>Drop a street photo here</h3>
-            <p>or click to browse — JPG / PNG</p>
+            <p>or click to browse — JPG / PNG supported</p>
           </>
         )}
       </div>
 
       {file && (
-        <div style={{ textAlign: 'center' }}>
-          <p style={{ color: '#888', marginBottom: 8 }}>📁 {file.name}</p>
+        <div className="upload-actions">
+          <div className="file-info">
+            📁 {file.name}
+          </div>
+          <br />
           <button
+            id="run-segmentation-btn"
             className="btn"
             onClick={handleSubmit}
             disabled={loading}
           >
-            {loading ? '⏳ Segmenting...' : '🚀 Run Segmentation'}
+            {loading ? '⏳ Segmenting…' : '🚀 Run Segmentation'}
           </button>
         </div>
       )}
