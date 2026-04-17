@@ -14,9 +14,9 @@ export default function Metrics() {
   }, [])
 
   if (error) return (
-    <p style={{ color: '#f87171', textAlign: 'center', marginBottom: '2rem' }}>
-      ⚠️ Backend offline — start the FastAPI server to see metrics.
-    </p>
+    <div className="offline-notice" id="offline-notice">
+      ⚠️ Backend offline — start the FastAPI server to see model metrics.
+    </div>
   )
   if (!metrics) return null
 
@@ -30,10 +30,11 @@ export default function Metrics() {
   ]
 
   return (
-    <div style={{ marginBottom: '2rem' }}>
-      <h2 style={{ marginBottom: '1rem', color: '#a78bfa' }}>
-        📈 Model Performance — {metrics.model}
-      </h2>
+    <div className="metrics-section" id="metrics">
+      <div className="section-title">
+        <div className="icon">📈</div>
+        <span>Model Performance — {metrics.model}</span>
+      </div>
       <div className="metrics-grid">
         {cards.map(c => (
           <div key={c.label} className="metric-card">

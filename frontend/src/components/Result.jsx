@@ -4,29 +4,34 @@ export default function Result({ data }) {
   const topClasses = Object.entries(data.percentages).slice(0, 10)
 
   return (
-    <div>
+    <div className="results-section" id="results">
+      <div className="section-title">
+        <div className="icon">🔍</div>
+        <span>Segmentation Results</span>
+      </div>
+
+      {/* Images side by side */}
       <div className="results-grid">
         <div className="result-card">
           <h3>📷 Original Photo</h3>
           <img
             src={`data:image/png;base64,${data.original_image}`}
-            alt="original"
+            alt="Original uploaded street photo"
           />
         </div>
         <div className="result-card">
           <h3>🎨 Segmentation Mask</h3>
           <img
             src={`data:image/png;base64,${data.mask_image}`}
-            alt="mask"
+            alt="DeepLabV3 segmentation mask"
           />
         </div>
       </div>
 
-      <div className="result-card" style={{ marginTop: '1.5rem' }}>
+      {/* Class breakdown */}
+      <div className="result-card breakdown-card">
         <h3>📊 Detected Classes ({data.num_classes} total)</h3>
-        <p style={{ color: '#888', fontSize: '0.85rem', margin: '0.5rem 0 1rem' }}>
-          File: {data.filename}
-        </p>
+        <p className="file-label">File: {data.filename}</p>
         <div>
           {topClasses.map(([label, pct]) => (
             <div key={label} className="class-bar">
