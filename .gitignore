@@ -1,0 +1,6 @@
+.claude/
+mlruns/
+__pycache__/
+*.pyc
+*.pth
+node_modules/
