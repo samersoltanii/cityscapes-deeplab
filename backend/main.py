@@ -16,7 +16,7 @@ from model import load_model, predict as run_predict
 
 # ── paths ────────────────────────────────────────────────────────────────────
 BASE_DIR     = os.path.dirname(__file__)
-WEIGHTS_PATH = os.path.join(BASE_DIR, "..", "model", "deeplabv3_best.pth")
+WEIGHTS_PATH = os.path.join(BASE_DIR, "..", "best_model.pth")
 RESULTS_PATH = os.path.join(BASE_DIR, "..", "deeplabv3_results.json")
 MLRUNS_URI   = f"file:{os.path.join(BASE_DIR, '..', 'mlruns')}"
 

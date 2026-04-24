@@ -2,12 +2,12 @@ import sys, os
 sys.path.insert(0, os.path.dirname(__file__))
 
 import torch
+import segmentation_models_pytorch as smp
 from PIL import Image
 from torchvision import transforms
-from torchvision.models.segmentation import deeplabv3_resnet50
 from utils import class_to_rgb, get_class_percentages
 
-NUM_CLASSES = 34
+NUM_CLASSES = 19
 IMG_SIZE    = 256
 
 _transform = transforms.Compose([
@@ -19,7 +19,12 @@ _transform = transforms.Compose([
 
 
 def load_model(weights_path: str, device: torch.device) -> torch.nn.Module:
-    model = deeplabv3_resnet50(weights=None, num_classes=NUM_CLASSES, aux_loss=True)
+    model = smp.DeepLabV3Plus(
+        encoder_name="efficientnet-b3",
+        encoder_weights=None,
+        in_channels=3,
+        classes=NUM_CLASSES,
+    )
     state = torch.load(weights_path, map_location=device, weights_only=True)
     if isinstance(state, dict) and "state_dict" in state:
         state = state["state_dict"]
@@ -35,7 +40,7 @@ def predict(model: torch.nn.Module, device: torch.device, pil_image: Image.Image
     tensor = _transform(pil_image.convert("RGB")).unsqueeze(0).to(device)
 
     with torch.no_grad():
-        output = model(tensor)["out"]
+        output = model(tensor)
 
     class_map = output.argmax(dim=1).squeeze(0).cpu().numpy()
 
